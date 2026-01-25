@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&family=Syne:wght@400;700;800&display=swap');
+
+@font-face {
+  font-family: 'Bites';
+  src: url('/behance-63ca032ee7792.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* DEFAULT: LIGHT MODE (Swiss Style) */
+    --background: 250 250 250;
+    /* #FAFAFA */
+    --foreground: 20 20 20;
+    /* #141414 */
+    --accent: 255 59 48;
+    /* International Red */
+    --border: 220 220 220;
+    /* Light Grey */
+    --muted: 115 115 115;
+    /* Secondary Text */
+    --grid-color: 0 0 0;
+    /* Black Grid Lines */
+  }
+
+  .dark {
+    /* DARK MODE (Obsidian Brutalist) */
+    --background: 26 26 26;
+    /* #1A1A1A */
+    --foreground: 234 234 234;
+    /* #EAEAEA */
+    --accent: 255 59 48;
+    /* Red remains constant */
+    --border: 120 120 120;
+    /* Brightened for clear 'stroke' effect */
+    --muted: 161 161 170;
+    --grid-color: 255 255 255;
+    /* White Grid Lines */
+  }
+}
+
+body {
+  @apply bg-background text-foreground transition-colors duration-500 ease-in-out antialiased;
+  background-color: rgb(var(--background));
+  color: rgb(var(--foreground));
+  overflow-x: hidden;
+  /* Critical for mobile stability */
+}
+
+/* Hide Native Scrollbars for "App-Like" feel */
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Typography Utilities */
+.stroke-text {
+  -webkit-text-stroke: 1px rgb(var(--foreground));
+  color: transparent;
+}
+
+/* Luxury Accents */
+.luxury-shadow {
+  box-shadow: 0 40px 100px -20px rgba(0, 0, 0, 0.4),
+    0 20px 50px -10px rgba(0, 0, 0, 0.2);
+}
+
+.glass-panel {
+  @apply bg-background/40 backdrop-blur-xl border border-white/10;
+}
+
+.dark .glass-panel {
+  @apply bg-black/40 border-white/5;
+}

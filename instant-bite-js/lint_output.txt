@@ -1,0 +1,80 @@
+
+> instant-bite-js@0.0.0 lint
+> eslint .
+
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\cart\CartDrawer.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\hero\Hero.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\home\ChefsSection.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\home\FeaturedSection.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\home\Testimonials.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\layout\Footer.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\layout\Navbar.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\layout\PageTransition.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\menu\MenuItem.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\ui\Magnetic.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\ui\MenuTicker.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\components\ui\Preloader.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\context\AuthContext.jsx
+  26:17  error  Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+  24 |
+  25 |         const newUser = {
+> 26 |             id: Math.random().toString(36).substr(2, 9),
+     |                 ^^^^^^^^^^^^^ Cannot call impure function
+  27 |             name,
+  28 |             email,
+  29 |             avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`,  react-hooks/purity
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\context\LoadingContext.jsx
+  15:14  error  Fast refresh only works when a file only exports components. Use a new file to share constants or functions between components  react-refresh/only-export-components
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\context\ToastContext.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\AboutPage.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\BlogPage.jsx
+  1:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\CheckoutPage.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\DnaPage.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\MenuPage.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+C:\Users\tobil\instant-bite\instant-bite-js\src\pages\ReservePage.jsx
+  2:10  error  'motion' is defined but never used. Allowed unused vars must match /^[A-Z_]/u  no-unused-vars
+
+✖ 21 problems (21 errors, 0 warnings)
+
