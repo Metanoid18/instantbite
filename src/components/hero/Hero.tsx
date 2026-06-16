@@ -1,7 +1,8 @@
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type Variants } from 'framer-motion';
 import { useRef } from 'react';
 import Magnetic from '../ui/Magnetic';
 import { useLoading } from '../../context/LoadingContext';
+import { EASE_OUT_EXPO } from '../../lib/motion';
 
 export default function Hero() {
     const sectionRef = useRef<HTMLElement>(null);
@@ -18,12 +19,12 @@ export default function Hero() {
     const title1 = "CULINARY";
     const title2 = "PRECISION";
 
-    const letterVariants = {
+    const letterVariants: Variants = {
         initial: { y: 100, opacity: 0 },
         animate: (i: number) => ({
             y: 0,
             opacity: 1,
-            transition: { duration: 0.8, delay: i * 0.03, ease: [0.22, 1, 0.36, 1] }
+            transition: { duration: 0.8, delay: i * 0.03, ease: EASE_OUT_EXPO }
         })
     };
 
@@ -142,7 +143,7 @@ export default function Hero() {
                             style={{ y: imageY }}
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={isLoading ? { opacity: 0, scale: 0.8 } : { opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                            transition={{ duration: 1, delay: 0.2, ease: EASE_OUT_EXPO }}
                             className="relative w-full aspect-[4/3] md:-mt-32 md:ml-12"
                         >
                             <img

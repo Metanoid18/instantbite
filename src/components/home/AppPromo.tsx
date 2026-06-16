@@ -1,8 +1,10 @@
 import { useEffect, useState, useRef } from 'react';
+import { useToast } from '../../context/ToastContext';
 
 export default function AppPromo() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [scale, setScale] = useState(1);
+    const { addToast } = useToast();
 
     useEffect(() => {
         const handleResize = () => {
@@ -79,12 +81,14 @@ export default function AppPromo() {
                 {/* 4. App Download Actions (Buttons) */}
                 <div className="absolute top-[2381px] left-0 right-0 h-[60px]" style={{ top: `${2381 - Y_OFFSET}px` }}>
                     <button
+                        onClick={() => addToast('App Store link coming soon', 'info')}
                         className="absolute bg-foreground text-background text-[15px] font-bold py-4 px-10 rounded-[59px] hover:bg-zinc-800 transition-colors whitespace-nowrap"
                         style={{ left: '727px' }}
                     >
                         App Store
                     </button>
                     <button
+                        onClick={() => addToast('Play Store link coming soon', 'info')}
                         className="absolute bg-background border border-foreground text-foreground text-[15px] font-bold py-4 px-10 rounded-[59px] hover:bg-foreground hover:text-background transition-all whitespace-nowrap"
                         style={{ left: '927px' }}
                     >
@@ -139,7 +143,7 @@ export default function AppPromo() {
                     />
                 </div>
 
-                {/* 8. Information Card with Custom SVG Borders */}
+                {/* Information Card with Custom SVG Borders */}
                 <div
                     className="absolute"
                     style={{
@@ -244,25 +248,6 @@ export default function AppPromo() {
                             </p>
                         </div>
                     </div>
-                </div>
-
-
-
-                {/* Supporting Image (Left of Card) */}
-                <div
-                    className="absolute bg-muted rounded-[25px] overflow-hidden"
-                    style={{
-                        left: '101px',
-                        top: `${3166 - 1877}px`,
-                        width: '549px',
-                        height: '411px'
-                    }}
-                >
-                    <img
-                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=2070&auto=format&fit=crop"
-                        alt="Restaurant Interior"
-                        className="w-full h-full object-cover"
-                    />
                 </div>
             </div>
         </section>

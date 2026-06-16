@@ -1,10 +1,29 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import { Instagram, Twitter, Facebook, ArrowUpRight } from 'lucide-react';
 import Magnetic from '../ui/Magnetic';
+import { useToast } from '../../context/ToastContext';
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
+    const { addToast } = useToast();
+    const [email, setEmail] = useState('');
+
+    const handleSubscribe = (e: FormEvent) => {
+        e.preventDefault();
+        const trimmed = email.trim();
+        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed);
+
+        if (!isValidEmail) {
+            addToast('Enter a valid email address', 'error');
+            return;
+        }
+
+        addToast('Subscribed to the frequency', 'success');
+        setEmail('');
+    };
 
     return (
         <footer className="bg-foreground text-background pt-24 pb-12 px-6 md:px-12 border-t border-border">
@@ -45,9 +64,9 @@ export default function Footer() {
                     <div className="space-y-6">
                         <h3 className="font-mono text-xs text-accent tracking-widest uppercase">Connect</h3>
                         <div className="flex gap-4">
-                            <a href="#" className="hover:text-accent transition-colors"><Instagram className="w-5 h-5" /></a>
-                            <a href="#" className="hover:text-accent transition-colors"><Twitter className="w-5 h-5" /></a>
-                            <a href="#" className="hover:text-accent transition-colors"><Facebook className="w-5 h-5" /></a>
+                            <button onClick={() => addToast('Instagram link coming soon', 'info')} aria-label="Instagram" className="hover:text-accent transition-colors"><Instagram className="w-5 h-5" /></button>
+                            <button onClick={() => addToast('Twitter link coming soon', 'info')} aria-label="Twitter" className="hover:text-accent transition-colors"><Twitter className="w-5 h-5" /></button>
+                            <button onClick={() => addToast('Facebook link coming soon', 'info')} aria-label="Facebook" className="hover:text-accent transition-colors"><Facebook className="w-5 h-5" /></button>
                         </div>
                         <div className="flex flex-col gap-3 font-sans text-sm font-medium mt-4">
                             <Link to="/legal" className="hover:text-accent transition-colors">Privacy Policy</Link>
@@ -61,18 +80,21 @@ export default function Footer() {
                         <p className="font-sans text-xs text-muted/60 leading-relaxed">
                             Join our closed-loop frequency. No spam, only flavor updates.
                         </p>
-                        <div className="flex border-b border-muted/30 pb-2">
+                        <form onSubmit={handleSubscribe} className="flex border-b border-muted/30 pb-2">
                             <input
                                 type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 placeholder="EMAIL ADDRESS"
+                                aria-label="Email address"
                                 className="bg-transparent border-none focus:outline-none text-sm w-full placeholder:text-muted/30 font-mono"
                             />
                             <Magnetic>
-                                <button className="text-accent hover:text-white transition-colors p-2">
+                                <button type="submit" aria-label="Subscribe" className="text-accent hover:text-white transition-colors p-2">
                                     <ArrowUpRight className="w-5 h-5" />
                                 </button>
                             </Magnetic>
-                        </div>
+                        </form>
                     </div>
 
                 </motion.div>
@@ -82,7 +104,7 @@ export default function Footer() {
                     <div className="font-['Cinzel'] text-[12vw] md:text-[8vw] leading-[0.8] font-black opacity-10 tracking-[0.01em] select-none">
                         INSTANT
                     </div>
-                    <div className="flex justify-between w-full md:w-auto mt-4 md:mt-0 gap-8 fond-mono text-[10px] text-muted/40 uppercase tracking-widest">
+                    <div className="flex justify-between w-full md:w-auto mt-4 md:mt-0 gap-8 font-mono text-[10px] text-muted/40 uppercase tracking-widest">
                         <span>© {currentYear} INSTANT BITE GRP.</span>
                         <span>ALL RIGHTS RESERVED.</span>
                     </div>

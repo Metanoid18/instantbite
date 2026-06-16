@@ -1,20 +1,26 @@
 import { motion, AnimatePresence, useScroll, useMotionValueEvent } from 'framer-motion';
-import { useState } from 'react';
-import { ShoppingBag, Menu } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ShoppingBag, Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
 import { useLoading } from '../../context/LoadingContext';
+import { EASE_OUT_EXPO } from '../../lib/motion';
 
 export default function Navbar() {
     const { toggleCart, cart } = useCart();
     const location = useLocation();
     const { isLoading } = useLoading();
     const [scrolled, setScrolled] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const { scrollY } = useScroll();
 
     useMotionValueEvent(scrollY, "change", (latest) => {
         setScrolled(latest > 50);
     });
+
+    useEffect(() => {
+        setIsMobileMenuOpen(false);
+    }, [location.pathname]);
 
     const itemCount = cart.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -30,7 +36,7 @@ export default function Navbar() {
         <motion.nav
             initial={{ y: -100 }}
             animate={isLoading ? { y: -100 } : { y: 0 }}
-            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: 0.4 }}
+            transition={{ duration: 1, ease: EASE_OUT_EXPO, delay: 0.4 }}
             className={`fixed top-0 w-full z-50 transition-all duration-500 ${scrolled
                 ? "border-b border-border bg-background/80 backdrop-blur-md py-4"
                 : "bg-transparent py-4"
@@ -130,11 +136,43 @@ export default function Navbar() {
                     </button>
 
                     {/* Mobile Menu Trigger */}
-                    <button className="lg:hidden p-1 text-foreground hover:text-orange-600">
-                        <Menu className="w-6 h-6" />
+                    <button
+                        onClick={() => setIsMobileMenuOpen(prev => !prev)}
+                        className="lg:hidden p-1 text-foreground hover:text-orange-600"
+                        aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+                        aria-expanded={isMobileMenuOpen}
+                    >
+                        {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
                 </div>
             </div>
+
+            {/* Mobile Menu Panel */}
+            <AnimatePresence>
+                {isMobileMenuOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3, ease: EASE_OUT_EXPO }}
+                        className="lg:hidden border-t border-border bg-background overflow-hidden"
+                    >
+                        <div className="flex flex-col px-6 md:px-12 py-6 gap-6">
+                            {links.map((item) => (
+                                <Link
+                                    key={item.name}
+                                    to={item.path}
+                                    onClick={() => setIsMobileMenuOpen(false)}
+                                    className={`text-base font-medium transition-colors hover:text-orange-600 ${location.pathname === item.path ? 'text-foreground' : 'text-muted-foreground'
+                                        }`}
+                                >
+                                    {item.name}
+                                </Link>
+                            ))}
+                        </div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.nav>
     );
 }

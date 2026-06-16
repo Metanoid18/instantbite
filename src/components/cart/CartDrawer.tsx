@@ -83,21 +83,23 @@ export default function CartDrawer() {
                                         <div className="flex-1 flex flex-col justify-between">
                                             <div className="flex justify-between items-start">
                                                 <h3 className="font-display font-bold uppercase tracking-tight text-sm pr-2">{item.name}</h3>
-                                                <span className="font-mono text-sm">${item.price * item.quantity}</span>
+                                                <span className="font-mono text-sm">${(item.price * item.quantity).toFixed(2)}</span>
                                             </div>
 
                                             <div className="flex justify-between items-end">
                                                 <div className="flex items-center gap-3 border border-border px-2 py-1">
                                                     <button
                                                         onClick={() => updateQuantity(item.id, -1)}
-                                                        className="text-muted hover:text-foreground p-1"
+                                                        className={`p-1 transition-colors ${item.quantity === 1 ? 'text-red-400 hover:text-red-500' : 'text-muted hover:text-foreground'}`}
+                                                        aria-label="Decrease quantity"
                                                     >
                                                         <Minus className="w-3 h-3" />
                                                     </button>
-                                                    <span className="font-mono text-xs">{item.quantity}</span>
+                                                    <span className="font-mono text-xs w-4 text-center">{item.quantity}</span>
                                                     <button
                                                         onClick={() => updateQuantity(item.id, 1)}
                                                         className="text-muted hover:text-foreground p-1"
+                                                        aria-label="Increase quantity"
                                                     >
                                                         <Plus className="w-3 h-3" />
                                                     </button>
@@ -120,7 +122,7 @@ export default function CartDrawer() {
                             <div className="p-8 border-t border-border space-y-6 bg-background">
                                 <div className="flex justify-between items-center font-display text-xl font-bold uppercase">
                                     <span>Total</span>
-                                    <span>${total}</span>
+                                    <span>${total.toFixed(2)}</span>
                                 </div>
                                 <button
                                     onClick={handleCheckout}

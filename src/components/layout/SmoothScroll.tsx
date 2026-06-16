@@ -35,16 +35,18 @@ export default function SmoothScroll({ children }: SmoothScrollProps) {
         // Ensure we are at the top at start
         lenis.scrollTo(0, { immediate: true });
 
-        // Animation loop
+        // Animation loop with cancelable RAF handle
+        let rafId: number;
         function raf(time: number) {
             lenis.raf(time);
-            requestAnimationFrame(raf);
+            rafId = requestAnimationFrame(raf);
         }
 
-        requestAnimationFrame(raf);
+        rafId = requestAnimationFrame(raf);
 
         // Cleanup
         return () => {
+            cancelAnimationFrame(rafId);
             lenis.destroy();
         };
     }, []);

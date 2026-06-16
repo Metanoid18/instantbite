@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useLoading } from '../../context/LoadingContext';
+import { EASE_PRELOADER } from '../../lib/motion';
 
 export default function Preloader() {
     const { setIsLoading } = useLoading();
@@ -39,7 +40,7 @@ export default function Preloader() {
             {isVisible && (
                 <motion.div
                     exit={{ opacity: 0, y: -100 }}
-                    transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+                    transition={{ duration: 0.5, ease: EASE_PRELOADER }}
                     className="fixed inset-0 z-[200] bg-background flex flex-col items-center justify-center p-12 overflow-hidden"
                 >
                     {/* Background Grid Accent */}

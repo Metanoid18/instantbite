@@ -1,0 +1,42 @@
+# Database module .gitignore
+# Protect sensitive database credentials
+
+# Database configuration (contains passwords!)
+db-config.js
+
+# Backup and dump files
+*.sql
+backup/
+dumps/
+*.bak
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# OS files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# IDE
+.vscode/
+.idea/
+*.sublime-*
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Keep these SQL files tracked!
+!schema.sql
+!sample-data.sql
+!QUERIES.sql

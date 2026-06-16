@@ -41,7 +41,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         await new Promise(resolve => setTimeout(resolve, 1000));
 
         const newUser: User = {
-            id: Math.random().toString(36).substr(2, 9),
+            id: Math.random().toString(36).slice(2, 11),
             name,
             email,
             avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`,

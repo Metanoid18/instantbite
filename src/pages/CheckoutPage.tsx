@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import type { FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import PageTransition from '../components/layout/PageTransition';
 import { useCart } from '../context/CartContext';
@@ -11,7 +12,7 @@ export default function CheckoutPage() {
     const [isProcessing, setIsProcessing] = useState(false);
     const [isSuccess, setIsSuccess] = useState(false);
 
-    const handleCheckout = (e: React.FormEvent) => {
+    const handleCheckout = (e: FormEvent) => {
         e.preventDefault();
         setIsProcessing(true);
         // Mock API call
@@ -89,7 +90,7 @@ export default function CheckoutPage() {
                                 disabled={isProcessing || cart.length === 0}
                                 className="w-full bg-accent text-white py-6 font-bold uppercase tracking-widest hover:bg-foreground transition-all disabled:opacity-50 disabled:cursor-not-allowed flex justify-center items-center gap-2"
                             >
-                                {isProcessing ? 'Processing Transaction...' : `Pay $${total}`}
+                                {isProcessing ? 'Processing Transaction...' : 'Pay ' + String.fromCharCode(36) + total.toFixed(2)}
                             </button>
 
                         </form>
@@ -102,13 +103,13 @@ export default function CheckoutPage() {
                             {cart.map(item => (
                                 <div key={item.id} className="flex justify-between font-sans text-sm">
                                     <span>{item.quantity}x {item.name}</span>
-                                    <span className="font-mono">${item.price * item.quantity}</span>
+                                    <span className="font-mono">{String.fromCharCode(36) + (item.price * item.quantity).toFixed(2)}</span>
                                 </div>
                             ))}
                         </div>
                         <div className="border-t border-border pt-4 flex justify-between font-serif text-xl font-bold">
                             <span>Total</span>
-                            <span>${total}</span>
+                            <span>{String.fromCharCode(36) + total.toFixed(2)}</span>
                         </div>
                     </div>
 

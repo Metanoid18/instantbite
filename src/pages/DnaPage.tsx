@@ -40,7 +40,7 @@ export default function DnaPage() {
                         >
                             <span className="font-mono text-accent text-xs tracking-widest">01. THE CONCEPT</span>
                             <h2 className="font-serif text-4xl md:text-6xl font-bold uppercase">Speed is a Flavor</h2>
-                            <p className="font-sans text-muted/80 text-lg leading-relaxed">
+                            <p className="font-sans text-background/70 text-lg leading-relaxed">
                                 We challenged the notion that fast food must be low quality. By leveraging cryo-cooking techniques, we deliver Michelin-star textures in 45 seconds.
                             </p>
                         </motion.div>
@@ -53,7 +53,7 @@ export default function DnaPage() {
                         >
                             <span className="font-mono text-accent text-xs tracking-widest">02. THE SUSTAINABILITY</span>
                             <h2 className="font-serif text-4xl md:text-6xl font-bold uppercase">Zero Waste Arch</h2>
-                            <p className="font-sans text-muted/80 text-lg leading-relaxed">
+                            <p className="font-sans text-background/70 text-lg leading-relaxed">
                                 Every ingredient is utilized. Skins become dusts. Stems become oils. We operate on a closed-loop molecular system that respects the atom.
                             </p>
                         </motion.div>
@@ -66,7 +66,7 @@ export default function DnaPage() {
                         >
                             <span className="font-mono text-accent text-xs tracking-widest">03. THE FUTURE</span>
                             <h2 className="font-serif text-4xl md:text-6xl font-bold uppercase">Beyond Biology</h2>
-                            <p className="font-sans text-muted/80 text-lg leading-relaxed">
+                            <p className="font-sans text-background/70 text-lg leading-relaxed">
                                 Our R&D lab is currently testing sound-frequency flavor modulation. The future of dining isn't just about taste—it's about frequency.
                             </p>
                         </motion.div>
